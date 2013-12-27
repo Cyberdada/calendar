@@ -20,9 +20,9 @@
 
 
 <ul class="pagination">
-  <li><a href="#">&laquo; previous {{scale}}</a></li>
-  <li><a href="#">Now {{monday}}</a></li>
-  <li><a href="#">Next {{scale}} &raquo;</a></li>
+  <li><a ng-click="previousWeek()">&laquo; previous {{scale}}</a></li>
+  <li><a ng-click="dateNow()">Now {{monday}}</a></li>
+  <li><a ng-click="nextWeek()">Next {{scale}} &raquo;</a></li>
 </ul>
   
 
