@@ -3,8 +3,8 @@
 <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link type="text/css" href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />	
-   
+                  
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <title>Tvättbok</title>
 </head>
 <body>
@@ -13,16 +13,9 @@
 <div style="margin:10px;" ng-controller="calendarHead"> 
 
 <ul class="pagination">
-  <li><a href="#">Weekly</a></li>
-  <li><a href="#">Monthly</a></li>
-  <li><a href="#">Yearly</a></li>
-</ul>
-
-
-<ul class="pagination">
-  <li><a ng-click="previousWeek()">&laquo; previous {{scale}}</a></li>
-  <li><a ng-click="dateNow()">Now {{monday}}</a></li>
-  <li><a ng-click="nextWeek()">Next {{scale}} &raquo;</a></li>
+  <li><a ng-click="previousWeek()">&laquo; Föregående {{scale}}</a></li>
+  <li><a ng-click="dateNow()">Nu {{monday}}</a></li>
+  <li><a ng-click="nextWeek()">Nästa {{scale}} &raquo;</a></li>
 </ul>
   
 
@@ -31,94 +24,34 @@
     <tr>
 <td></td>     
 
-<td ng-repeat="day in days"> {{day}}</td> 
+<td ng-repeat="day in days track by day._d"> {{day.format("ddd, MMM, Do YYYY")}}</td> 
 </tr>
-
 </thead>
 <tbody>
-    <tr>
-        <td>08:00 - 10:00</td>      
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
 
-    <tr>
-        <td>08:00 - 10:00</td>      
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    <tr ng-repeat="timeslot in Timeslots">
+        <td>{{timeslot.name}}</td>      
+        
+<td ng-repeat="day in days track by day._d"> 
 
-    <tr>
-        <td>10:00 - 12:00</td>      
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+<button ng-repeat="bookable in Bookables" id="{{day.format('YYYYMMDD')+'_' +timeslot.id+'_'+bookable.id}}" type="button" class="btn btn-default btn-sm" title="{{bookable.name + ' ' + day.format('YYYY MM DD')+' kl: ' +timeslot.name}}"  data-toggle="modal" data-target="#myModal" ng-click="setCurrent(ev = $event)">
+  <span class="glyphicon glyphicon-lock" style="color:#009E73;"></span>
+</button>
+</td>
 
-    <tr>
-        <td>12:00 - 14:00</td>      
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-
-    <tr>
-        <td>14:00 - 17:00</td>      
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>17:00 - 20:00</td>      
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>20:00 - 22:00</td>      
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
 
 </tbody>
 
 
 </table>
+
+
+ <div ng-include="'js/fragments/BookingDialog.htm'"></div>
 </div>
 <script src="lib/angular.min.js"></script>
 <script src="lib/jquery.min.js"></script>
-<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="lib/moment.min.js"></script>
 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
 <script src="https://cdn.firebase.com/libs/angularfire/0.5.0-rc1/angularfire.js"></script>
