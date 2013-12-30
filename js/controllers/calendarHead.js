@@ -1,6 +1,6 @@
 //var myApp = angular.module('myApp',[]);
 
-function calendarHead($scope, Timeslots,Bookables) {
+function calendarHead($scope, Timeslots,Bookables, Auth) {
          $scope.scale = "vecka";
         var _mon =  moment().subtract('days', moment().day() - 1);
          $scope.days = initDays();
@@ -35,6 +35,10 @@ function calendarHead($scope, Timeslots,Bookables) {
 			$scope.alreadyBooked.push(snapshot.val());
 			 markBooked();
 		});
+
+        $scope.login = function  () {
+            Auth.login('facebook');
+        }
        
         $scope.dateNow = function(){
                 _mon =  moment().subtract('days', moment().day() - 1);

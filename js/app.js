@@ -14,3 +14,22 @@ angular.module('CyberDaDaCalendar', [ 'firebase'])
 .factory('Bookables', function() {
 	return [{id:1, name:"Tvättmaskin #1"}, {id:2, name:"Tvättmaskin #2"}, {id:3,name:"Tvättmaskin #3"}];
 })
+
+
+.factory('Auth', function() {
+var chatRef = new Firebase('https://cyberdada.firebaseio.com');
+return 	new FirebaseSimpleLogin(chatRef, function(error, user) {
+  if (error) {
+    // an error occurred while attempting login
+    console.log(error);
+  } else if (user) {
+    // user authenticated with Firebase
+    console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+  } else {
+    // user is logged out
+  }
+});
+})
+
+
+
