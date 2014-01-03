@@ -1,0 +1,8 @@
+.booked , .booked:active, .booked:hover, .booked:focus{
+	color : #d55e00;
+}
+
+
+.notBooked,.notBooked:active,.notBooked:hover, .notBooked:focus {
+	color : #009E73;
+}
