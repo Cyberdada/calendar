@@ -1,6 +1,9 @@
 //var myApp = angular.module('myApp',[]);
 angular.module('CyberDaDaCalendar').controller('calendarCtrl',
 function calendarCtrl($scope, Timeslots, Bookables, Auth, bookingService) {
+
+
+
          var _mon =  moment().subtract('days', moment().day() - 1);
          $scope.days = initDays();
          $scope.Timeslots = Timeslots;
@@ -25,10 +28,7 @@ function calendarCtrl($scope, Timeslots, Bookables, Auth, bookingService) {
         });
     
  
-        $scope.login = function  () {
-            Auth.login('facebook');
-        }
-       
+    
         $scope.dateNow = function(){
             _mon =  moment().subtract('days', moment().day() - 1);
              $scope.days = initDays();

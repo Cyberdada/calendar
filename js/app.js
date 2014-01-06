@@ -1,7 +1,7 @@
 angular.module('CyberDaDaCalendar', [ 'firebase'])
- 
+
 .value('fbURL', 'https://cyberdada.firebaseio.com/')
- 
+
 .factory('Booked', function($firebase, fbURL) {
   return $firebase(new Firebase(fbURL));
 })
@@ -21,15 +21,16 @@ var chatRef = new Firebase('https://cyberdada.firebaseio.com');
 return 	new FirebaseSimpleLogin(chatRef, function(error, user) {
   if (error) {
     // an error occurred while attempting login
+    console.log("auth error");
     console.log(error);
   } else if (user) {
     // user authenticated with Firebase
     console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
   } else {
+    console.log("user is logged out");
+   
     // user is logged out
   }
 });
 })
-
-
 
