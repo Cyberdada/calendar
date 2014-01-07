@@ -34,27 +34,27 @@ function calendarCtrl($scope, Timeslots, Bookables, Auth, bookingService) {
              $scope.days = initDays();
             $scope.$apply();
              markAllBooked();
-        }
+        };
 
         $scope.nextWeek = function() {
             _mon = moment(_mon).add('days', 7); 
              $scope.days = initDays();
              $scope.$apply();
              markAllBooked();
-        }
+        };
         $scope.previousExists = function() {
             return _mon._d <  moment().subtract('days', moment().day() - 1)._d;
-        }
+        };
 
         $scope.previousWeek = function() {
             _mon = moment(_mon).subtract('days', 7); 
              $scope.days = initDays();
              $scope.$apply();
              markAllBooked();
-        }
+        };
 
             function markAllBooked() {
-            for(i = 0; i < $scope.alreadyBooked.length; i++ ) {
+            for(var i = 0; i < $scope.alreadyBooked.length; i++ ) {
                 var p = $("#" + $scope.alreadyBooked[i].book_id)[0];
                 markBooked(p);
             }
@@ -73,5 +73,5 @@ function calendarCtrl($scope, Timeslots, Bookables, Auth, bookingService) {
         		target = target.parentNode;
         	}
             bookingService.addBooking({book_id:target.id});
-        }
+        };
 });
